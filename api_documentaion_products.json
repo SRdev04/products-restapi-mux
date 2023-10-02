@@ -1,0 +1,329 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Products RESTful API",
+        "description": "OpenAPI For Products RESTful API",
+        "version": "1.0.0",
+        "contact": {
+            
+            "email": "sahrul0324@gmail.com",
+            "name": "Sahrul Ramadhan"
+            
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "paths": {
+        "/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get all products",
+                "description": "Get all products",
+                "operationId": "getProducts",
+                "parameters": [],
+                "security": [
+                    {
+                        "ProductsLock": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success Get all products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Products"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/product":{
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Insert or update product",
+                "description": "Insert or update product",
+                "operationId": "insertOrUpdateProduct",
+                "security": [
+                    {
+                        "ProductsLock": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success Insert or update product",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Products"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InsertOrUpdate"
+                            }
+                        }
+                    }
+                }
+            }
+            
+        },
+        "/product/{productsId}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get product by id",
+                "description": "Get product by id",
+                "operationId": "getProductById",
+                "parameters": [
+                    {   "required": true,
+                        "schema":{
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                        "name": "productsId",
+                        "in": "path",
+                        "description": "Products Id"
+                    }
+                ],
+                "security": [
+                    {
+                        "ProductsLock": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success Get product by id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Products"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Insert or update product",
+                "description": "Insert or update product",
+                "operationId": "insertOrUpdateProduct",
+                "security": [
+                    {
+                        "ProductsLock": []
+                    }
+                ],
+                "parameters": [
+                    {   "schema":{
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                        "required": true,
+                        "name": "productsId",
+                        "in": "path",
+                        "description": "Products Id"
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InsertOrUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success  update product",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "code": {
+                                        "type": "integer",
+                                        "example": 200
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "success"
+                                    },
+                                    "data": {
+                                        "$ref": "#/components/schemas/Products"
+                                    }
+                                    
+                                }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Delete product by id",
+                "description": "Delete product by id",
+                "operationId": "deleteProductById",
+                "parameters": [
+                    {
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64"
+                        },
+
+                    "required": true,
+                    "name": "productsId",
+                    "in": "path",
+                    "description": "Products Id"
+                    }
+                ],
+                "security": [
+                    {
+                        "ProductsLock": []
+                    }
+                ],
+               "responses": {
+                "200": {
+                    "description": "Success Delete product by id",
+                    "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "example": 200
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "example": "success"
+                                }
+                                
+                            }
+                        }
+                    }
+                    }
+                }
+               }
+            }
+        }
+        
+        
+        
+    },
+    "components": {
+        "securitySchemes": {
+            "ProductsLock": {
+                "type": "apiKey",
+                "name": "X-ApiKey-X",
+                "in": "header",
+                "description": "Authentication ApiKey For Products"
+            }
+        },
+        "schemas": {
+            "InsertOrUpdate": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "type": "number"
+                    }
+                }
+            },
+            "Products": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "type": "number"
+                    },
+                    "created_at": {
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}
