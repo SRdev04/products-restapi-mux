@@ -20,9 +20,9 @@ Getting Started
 
     Clone the Repository:
 
-    bash
+    bash git clone https://github.com/SRdev04/products-restapi-mux 
 
-git clone https://github.com/SRdev04/products-restapi-mux 
+
 
 Install Dependencies:
 
